@@ -18,10 +18,15 @@ describe Person do
     end
 
     it "has a favorite_color" do
-        @person.color.should eql "cerulean"
+        @person.favorite_color.should eql "cerulean"
     end
 
     it "has a date_of_birth" do
         @person.date_of_birth.should eql "01/18/1990"
+    end
+
+    describe "#to_s" do
+        let(:result) { @person.to_s }
+        specify { result.should == "David Sutton" }
     end
 end

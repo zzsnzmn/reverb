@@ -8,4 +8,10 @@ class Person
         @favorite_color = favorite_color
         @date_of_birth = date_of_birth
     end
+
+    def to_s
+        "#{first_name} #{last_name}"
+    end
 end
+
+

@@ -18,7 +18,7 @@ describe Person do
     end
 
     it "has a favorite_color" do
-        @person.gender.should eql "cerulean"
+        @person.color.should eql "cerulean"
     end
 
     it "has a date_of_birth" do

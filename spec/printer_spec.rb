@@ -29,6 +29,7 @@ describe Printer do
         it "adds people from all files" do
             @printer = Printer.new(["../data/david.csv", "../data/lindsey.csv"])
             @person = Person.new("Brockman", "Lindsey", "female", "blue", "08/18/1990")
+            @printer.people[0].to_s.should eql @person.to_s
             @printer.people[1].to_s.should eql @person.to_s
             @printer.people.size.should eql 2
         end

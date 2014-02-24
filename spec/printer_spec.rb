@@ -68,4 +68,46 @@ describe Printer do
         end
     end
 
+    describe "#get_by_gender" do
+        it "returns a list of people sorted by gender" do
+            @printer = Printer.new(["../data/david.csv", "../data/lindsey.csv", "../data/batman.csv"])
+            @person0 = Person.new("Sutton", "David", "male", "cerulean", "01/18/1990")
+            @person1 = Person.new("Brockman", "Lindsey", "female", "blue", "08/18/1990")
+            @person2 = Person.new("Wayne", "Batman", "male", "black", "04/07/1915")
+            @list = @printer.get_by_gender
+            @list.people[0].to_s.should eql @person1.to_s
+            @list.people[1].to_s.should eql @person0.to_s
+            @list.people[2].to_s.should eql @person2.to_s
+            @list.people.size.should eql 3
+        end
+    end
+
+    describe "#get_by_dob" do
+        it "returns a list of people sorted by birthday (oldest first)" do
+            @printer = Printer.new(["../data/david.csv", "../data/lindsey.csv", "../data/batman.csv"])
+            @person0 = Person.new("Sutton", "David", "male", "cerulean", "01/18/1990")
+            @person1 = Person.new("Brockman", "Lindsey", "female", "blue", "08/18/1990")
+            @person2 = Person.new("Wayne", "Batman", "male", "black", "04/07/1915")
+            @list = @printer.get_by_dob
+            @list.people[0].to_s.should eql @person2.to_s
+            @list.people[1].to_s.should eql @person0.to_s
+            @list.people[2].to_s.should eql @person1.to_s
+            @list.people.size.should eql 3
+        end
+    end
+
+    describe "#get_by_name" do
+        it "returns a list of people sorted by last_name Z-A" do
+            @printer = Printer.new(["../data/david.csv", "../data/lindsey.csv", "../data/batman.csv"])
+            @person0 = Person.new("Sutton", "David", "male", "cerulean", "01/18/1990")
+            @person1 = Person.new("Brockman", "Lindsey", "female", "blue", "08/18/1990")
+            @person2 = Person.new("Wayne", "Batman", "male", "black", "04/07/1915")
+            @list = @printer.get_by_name
+            @list.people[0].to_s.should eql @person2.to_s
+            @list.people[1].to_s.should eql @person0.to_s
+            @list.people[2].to_s.should eql @person1.to_s
+            @list.people.size.should eql 3
+        end
+    end
+
 end

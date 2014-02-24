@@ -37,5 +37,14 @@ class Printer
         end
         return list
     end
+
+    def get_by_gender
+    end
+
+    def get_by_dob
+    end
+
+    def get_by_name
+    end
 end
 

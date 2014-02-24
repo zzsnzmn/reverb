@@ -10,7 +10,7 @@
 * Think simple. Readability and modularity are better than being clever.
 * You must provide 100% test coverage for your code. Write tests first to ensure full coverage.
 
----
+===
 
 ## Step 1:
 Build a system to parse and sort a set of records  
@@ -42,11 +42,11 @@ Output 2 – sorted by birth date, ascending.
 Output 3 – sorted by last name, descending.  
 
 Ensure that fields are displayed in the following order:  
-    * last name
-    * first name
-    * gender
-    * date of birth
-    * favorite color
+* last name
+* first name
+* gender
+* date of birth
+* favorite color
 
 Display dates in the format M/D/YYYY.
 
@@ -59,9 +59,11 @@ Tests for this section are required as well.
 
 Your assignment is to build a standalone Grape API with the following endpoints:
 
+```
 POST /records - Post a single data line in any of the 3 formats supported by your existing code  
 GET /records/gender - returns records sorted by gender  
 GET /records/birthdate - returns records sorted by birthdate  
 GET /records/name - returns records sorted by name  
+```
 It's your choice how you render the output from these endpoints as long as it well structured data. These endpoints should return JSON.  
 

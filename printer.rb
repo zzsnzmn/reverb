@@ -1,4 +1,5 @@
 require 'CSV'
+require 'date'
 require_relative './person'
 
 class Printer
@@ -39,12 +40,18 @@ class Printer
     end
 
     def get_by_gender
+        return @people.sort { |a, b| (a.gender == b.gender) ? a.last_name <=> b.last_name : a.gender <=> b.gender }
     end
 
     def get_by_dob
+        Date.strptime('01/18/1990', '%m/%d/%Y')
+        return @people.sort { |a, b|
+            Date.strptime(a.date_of_birth, '%m/%d/%Y') <=> Date.strptime(b.date_of_birth, '%m/%d/%Y') 
+        }
     end
 
     def get_by_name
+        return @people.sort { |a, b| b.last_name <=> a.last_name }
     end
 end
 

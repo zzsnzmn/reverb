@@ -27,7 +27,7 @@ describe Person do
 
     describe "#to_s" do
         let(:result) { @person.to_s }
-        specify { result.should == "David Sutton" }
+        specify { result.should == "Sutton David male cerulean 01/18/1990" }
     end
 
     describe "#to_json" do

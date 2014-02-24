@@ -3,7 +3,35 @@ require_relative "../printer"
 
 describe Printer do
 
+    it "has a list of people" do
+        @printer = Printer.new([])
+        @printer.people.class.should eql Array
+    end
+
+    it "has a list of files" do
+        @printer = Printer.new([])
+        @printer.files.class.should eql Array
+    end
+
     describe "#new" do
+        it "sets files to a given list" do
+            @printer = Printer.new(["../data/david.csv"])
+            @printer.files.should eql ["../data/david.csv"]
+        end
+        
+        it "adds people from all files" do
+            @printer = Printer.new(["../data/david.csv"])
+            @person = Person.new("Sutton", "David", "male", "cerulean", "01/18/1990")
+            @printer.people[0].to_s.should eql @person.to_s
+            @printer.people.size.should eql 1
+        end
+
+        it "adds people from all files" do
+            @printer = Printer.new(["../data/david.csv", "../data/lindsey.csv"])
+            @person = Person.new("Brockman", "Lindsey", "female", "blue", "08/18/1990")
+            @printer.people[1].to_s.should eql @person.to_s
+            @printer.people.size.should eql 2
+        end
     end
 
     describe "#get_delimiter" do
@@ -27,16 +55,6 @@ describe Printer do
             @person = Person.new("Sutton", "David", "male", "cerulean", "01/18/1990")
             @printer.read_file("../data/david.csv")[0].to_s.should eql @person.to_s
         end
-    end
- 
-    it "has a list of people" do
-        @printer = Printer.new([])
-        @printer.people.class.should eql Array
-    end
-
-    it "has a list of files" do
-        @printer = Printer.new([])
-        @printer.files.class.should eql Array
     end
     
 end

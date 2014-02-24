@@ -6,6 +6,7 @@ class Printer
     def initialize(files)
         @people = []
         @files = files
+        self.read_files
     end
 
     def get_delimiter(file)
@@ -25,9 +26,15 @@ class Printer
         list = []
         CSV.foreach(file, {:col_sep => delim}) do |row|
             # this could probably validate better
-            list.push(Person.new(row[0], row[1], row[2], row[3], row[4]))
+            list.push(Person.new(row[0].strip, row[1].strip, row[2].strip, row[3].strip, row[4].strip))
         end
         return list
+    end
+
+    def read_files
+        @files.each do |file|
+            @people.concat(read_file(file))
+        end
     end
 end
 

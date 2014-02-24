@@ -7,9 +7,17 @@ describe Printer do
     end
 
     describe "#get_delimiter" do
-        it "should return a comma if given a comma delinated file" do
+        it "returns a comma if given a comma delinated file" do
             @printer = Printer.new([])
             @printer.get_delimiter("../data/people_comma.csv").should eql ','
+        end
+        it "returns a pipe if given a pipe delinated file" do
+            @printer = Printer.new([])
+            @printer.get_delimiter("../data/people_pipe.csv").should eql '|'
+        end
+        it "returns a space if given a space delinated file" do
+            @printer = Printer.new([])
+            @printer.get_delimiter("../data/people_space.csv").should eql ' '
         end
     end
  

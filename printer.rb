@@ -9,6 +9,15 @@ class Printer
     end
 
     def get_delimiter(file)
+        f = File.open(file, 'r')
+        s = f.read
+        if s.index(',')
+            return ','
+        elsif s.index('|')
+            return '|'
+        else
+            return ' '
+        end
     end
 end
 

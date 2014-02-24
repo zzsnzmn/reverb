@@ -20,6 +20,14 @@ describe Printer do
             @printer.get_delimiter("../data/people_space.csv").should eql ' '
         end
     end
+
+    describe "#read_file" do
+        it "adds Person objects from a given filename" do
+            @printer = Printer.new([])
+            @person = Person.new("Sutton", "David", "male", "cerulean", "01/18/1990")
+            @printer.read_file("../data/david.csv")[0].to_s.should eql @person.to_s
+        end
+    end
  
     it "has a list of people" do
         @printer = Printer.new([])

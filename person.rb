@@ -10,7 +10,7 @@ class Person
     end
 
     def to_s
-        "#{last_name} #{first_name} #{gender} #{favorite_color} #{data_of_birth}"
+        "#{last_name} #{first_name} #{gender} #{favorite_color} #{date_of_birth}"
     end
 
     def to_json

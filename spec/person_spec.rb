@@ -32,6 +32,6 @@ describe Person do
 
     describe "#to_json" do
         let(:result) { @person.to_json }
-        specify { result.should == '{last_name: "Sutton", first_name: "David", gender: "male", favorite_color: "cerulean", date_of_birth: "01/18/1990"}' }
+        specify { result.should == '{"last_name": "Sutton", "first_name": "David", "gender": "male", "favorite_color": "cerulean", "date_of_birth": "01/18/1990"}' }
     end
 end

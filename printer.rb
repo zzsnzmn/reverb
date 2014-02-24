@@ -4,9 +4,8 @@ require_relative './person'
 class Printer
     attr_accessor :people, :files
     def initialize(files)
-        @people = []
         @files = files
-        self.read_files
+        @people = self.read_files(@files)
     end
 
     def get_delimiter(file)
@@ -31,10 +30,12 @@ class Printer
         return list
     end
 
-    def read_files
-        @files.each do |file|
-            @people.concat(read_file(file))
+    def read_files(files)
+        list = []
+        files.each do |file|
+            list.concat(read_file(file))
         end
+        return list
     end
 end
 

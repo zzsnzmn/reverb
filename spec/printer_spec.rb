@@ -57,4 +57,15 @@ describe Printer do
         end
     end
     
+    describe "#read_files" do
+        it "returns a list of people" do
+            @printer = Printer.new(["../data/david.csv", "../data/lindsey.csv"])
+            @person0 = Person.new("Sutton", "David", "male", "cerulean", "01/18/1990")
+            @person1 = Person.new("Brockman", "Lindsey", "female", "blue", "08/18/1990")
+            @printer.people[0].to_s.should eql @person0.to_s
+            @printer.people[1].to_s.should eql @person1.to_s
+            @printer.people.size.should eql 2
+        end
+    end
+
 end

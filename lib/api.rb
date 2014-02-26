@@ -1,4 +1,6 @@
 require 'grape'
+require_relative "../reader"
+require_relative "../writer"
 
 module ReverbAPI
 	class API < Grape::API
@@ -6,20 +8,33 @@ module ReverbAPI
 
 	    resource :records do
 	    	desc "Add posted string to records."
+	    	params do
+	    		requires :record, type: String, desc: "the record with | , ' '"
+	    	end
 	    	post do
-	    		"post it"
+	            reader = Reader.new([])
+	            writer = Writer.new([])
+	            person = reader.validate(params[:record])
+	            writer.save(person)
+	            "saved"
 	    	end
 
 	    	get :gender do
-	    		{ by: "gender"}
+	    		people = Reader.new([]).read_db
+	    		writer = Writer.new(people)
+	    		writer.sort_by_gender.map {|person| person.to_hash}
 	    	end
 
 	    	get :name do
-	    		{ by: "name"}
+	    		people = Reader.new([]).read_db
+	    		writer = Writer.new(people)
+	    		writer.sort_by_last_name.map {|person| person.to_hash}
 	    	end
 
 	    	get :birthdate do
-	    		{ by: "birthdate" }
+	    		people = Reader.new([]).read_db
+	    		writer = Writer.new(people)
+	    		writer.sort_by_age.map {|person| person.to_hash}
 	    	end
 	    end
 	end

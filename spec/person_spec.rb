@@ -35,8 +35,8 @@ describe Person do
         specify { result.should == "Sutton David male cerulean 01/18/1990\n" }
     end
 
-    describe "#to_json" do
-        let(:result) { @person.to_json }
-        specify { result.should == '{"last_name": "Sutton", "first_name": "David", "gender": "male", "date_of_birth": "01/18/1990", "favorite_color": "cerulean"}' }
+    describe "#to_hash" do
+        let(:result) { @person.to_hash }
+        specify { result.should == {:last_name => "Sutton", :first_name => "David", :gender => "male", :date_of_birth => "01/18/1990", :favorite_color => "cerulean"} }
     end
 end

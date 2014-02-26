@@ -8,20 +8,34 @@ class Reader
         @files = files
     end
 
-    def get_delimiter(file)
+    def validate(str)
+        begin
+            delim = self.get_delimiter(str)
+            values = str.split(delim)
+            return Person.new(values[0], values[1], values[2], values[3], values[4])
+        rescue
+            return nil
+        end
+    end
+
+    def get_delimiter(str)
+        if str.index(',')
+            return ','
+        elsif str.index('|')
+            return '|'
+        else
+            return ' '
+        end
+    end
+
+    def get_delimiter_from_file(file)
         begin
             f = File.open(file, 'r')
             s = f.read
         rescue
             s = file
         end
-        if s.index(',')
-            return ','
-        elsif s.index('|')
-            return '|'
-        else
-            return ' '
-        end
+        return self.get_delimiter(s)
     end
 
     def read_db
@@ -30,11 +44,11 @@ class Reader
     end
 
     def read_file(file)
-        delim = self.get_delimiter(file)
+        delim = self.get_delimiter_from_file(file)
         list = []
         CSV.foreach(file, {:col_sep => delim}) do |row|
             # this could probably validate better
-            list.push(Person.new(row[0].strip, row[1].strip, row[2].strip, row[3].strip, row[4].strip))
+            list.push(Person.new(row[0], row[1], row[2], row[3], row[4]))
         end
         return list
     end

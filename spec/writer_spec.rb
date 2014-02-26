@@ -1,28 +1,7 @@
 require_relative "../person"
 require_relative "../reader"
 require_relative "../writer"
-require "stringio"
-
-# mock out stdout to verify that the method puts correctly
-module Kernel
-    def capture_stdout
-        out = StringIO.new
-        $stdout = out
-        yield
-        return out
-    ensure
-        $stdout = STDOUT
-    end
-end
-
-describe "#capture_stdout" do
-    it "captures std out in a string" do
-        out = capture_stdout do
-            puts "hello"
-        end
-        out.string.should eql "hello\n" 
-    end
-end
+require_relative "./stdout_helper"
 
 describe Writer do
     reader = Reader.new(["data/david.csv", "data/lindsey.csv", "data/batman.csv", "data/snoozemen.csv"])

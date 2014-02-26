@@ -15,7 +15,7 @@ Hosting as a rack applications:
 
 The rack application is hosted on port 8080, you can fake some data with curl via:  
 ```
-> curl -X POST -d "record=Paul Les male 06/09/1915 sunburst" http://localhost:8080/records
+> curl -X POST -d "record=Paul Les male sunburst 06/09/1915" http://localhost:8080/records
 ```
 
 To run the tests:  

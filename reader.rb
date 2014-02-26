@@ -2,16 +2,19 @@ require 'CSV'
 require 'date'
 require_relative './person'
 
-class Printer
+class Reader
     attr_accessor :people, :files
     def initialize(files)
         @files = files
-        @people = self.read_files(@files)
     end
 
     def get_delimiter(file)
-        f = File.open(file, 'r')
-        s = f.read
+        begin
+            f = File.open(file, 'r')
+            s = f.read
+        rescue
+            s = file
+        end
         if s.index(',')
             return ','
         elsif s.index('|')
@@ -31,27 +34,12 @@ class Printer
         return list
     end
 
-    def read_files(files)
+    def read
         list = []
-        files.each do |file|
+        @files.each do |file|
             list.concat(read_file(file))
         end
         return list
-    end
-
-    def get_by_gender
-        return @people.sort { |a, b| (a.gender == b.gender) ? a.last_name <=> b.last_name : a.gender <=> b.gender }
-    end
-
-    def get_by_dob
-        Date.strptime('01/18/1990', '%m/%d/%Y')
-        return @people.sort { |a, b|
-            Date.strptime(a.date_of_birth, '%m/%d/%Y') <=> Date.strptime(b.date_of_birth, '%m/%d/%Y') 
-        }
-    end
-
-    def get_by_name
-        return @people.sort { |a, b| b.last_name <=> a.last_name }
     end
 end
 

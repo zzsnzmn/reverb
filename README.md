@@ -1,5 +1,32 @@
-# Technical Challenge
+# Reverb
 
+Built on OS X using ruby 2.0.0. There may be some pathing issues on other operating systems (CSV vs csv?)  
+
+CLI App usage:  
+```
+> ruby ./reverb -s [gender, age, name] <files>
+```
+
+Hosting as a rack applications:  
+```
+# from project root
+> rackup
+```
+
+The rack application is hosted on port 8080, you can fake some data with curl via:  
+```
+> curl -X POST -d "record=Paul Les male 06/09/1915 sunburst" http://localhost:8080/records
+```
+
+To run the tests:  
+```
+> rspec spec/[spec_file]
+```
+For some reason running the tests in isolation will pass, but 3 fail when run with plain rspec.  
+
+===
+
+# Technical Challenge
 
 ## Rules/Guidelines
 * Make a github repository and commit in small cohesive chunks.

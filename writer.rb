@@ -21,6 +21,10 @@ class Writer
 		end
 	end
 
+	def save(person)
+		File.open("highly_scalable_database.ssv", 'a') {|file| file.write(person.to_db_s)}
+	end
+
     def sort_by_gender
         return @people.sort { |a, b| (a.gender.downcase == b.gender.downcase) ? a.last_name <=> b.last_name : a.gender <=> b.gender }
     end

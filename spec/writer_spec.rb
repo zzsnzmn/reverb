@@ -2,6 +2,7 @@ require_relative "../person"
 require_relative "../reader"
 require_relative "../writer"
 require_relative "./stdout_helper"
+require "db_helper"
 
 describe Writer do
     reader = Reader.new(["data/david.csv", "data/lindsey.csv", "data/batman.csv", "data/snoozemen.csv"])
@@ -41,6 +42,15 @@ describe Writer do
             out.string.should eql (batman + "\n" + david + "\n" + zz + "\n" + lindsey + "\n")
         end
 
+    end
+
+    describe "#save" do
+        clear_db
+        person = Person.new("Sutton", "David", "male", "cerulean", "01/18/1990")
+        Writer.new([]).save(person)
+        let (:result) { reader.read_db }
+        specify { result.size.should eql 1}
+        specify { result[0].to_s.should eql person.to_s }
     end
 
     describe "#sort_by_gender" do

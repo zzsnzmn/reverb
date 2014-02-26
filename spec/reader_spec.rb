@@ -1,5 +1,6 @@
 require_relative "../person"
 require_relative "../reader"
+require "db_helper"
 
 describe Reader do
 
@@ -41,5 +42,11 @@ describe Reader do
         specify { people[0].to_s.should eql "Sutton David male 01/18/1990 cerulean" }
         specify { people[1].to_s.should eql "Brockman Lindsey female 08/18/1990 blue" }
         specify { people.size.should eql 2 }
+    end
+
+    describe "#read_db" do
+        create_david
+        let (:db) { reader.read_db }
+        specify { db[0].to_s.should eql "Sutton David male 01/18/1990 cerulean" }
     end
 end

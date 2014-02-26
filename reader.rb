@@ -24,6 +24,11 @@ class Reader
         end
     end
 
+    def read_db
+        list = self.read_file('highly_scalable_database.ssv')
+        return list
+    end
+
     def read_file(file)
         delim = self.get_delimiter(file)
         list = []

@@ -43,4 +43,14 @@ describe Reverb do
 		end
 		out.string.should eql "van-Rossum Guido Male 01/31/1956 Red\nMatsumoto Yukihiro Male 04/14/1965 Blue\nLovelace Ada Female 10/10/1815 Orange\nHopper Grace Female 10/09/1906 Green\n"
 	end
+
+	it "should print by last name" do
+		out = capture_stdout do
+			begin
+				Reverb.new(["-s", "name", "data/david.csv", "data/lindsey.csv"])
+			rescue SystemExit => e
+			end
+		end
+		out.string.should eql "Sutton David male 01/18/1990 cerulean\nBrockman Lindsey female 08/18/1990 blue\n"
+	end
 end

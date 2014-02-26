@@ -5,7 +5,17 @@ class Writer
 		@people = people
 	end
 
-	def print
+	def print(sort_by=nil)
+
+		case sort_by
+		when :gender
+			@people = self.sort_by_gender
+		when :age
+			@people = self.sort_by_age
+		when :name
+			@people = self.sort_by_last_name
+		end
+
 		@people.each do |person|
 			puts person.to_s
 		end

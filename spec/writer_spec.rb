@@ -40,6 +40,28 @@ describe Writer do
             end
             out.string.should eql (david + "\n" + lindsey + "\n" + batman + "\n" + zz + "\n")
         end
+
+        it "writes sorted by gender" do
+            out = capture_stdout do
+                writer.print(:gender)
+            end
+            out.string.should eql (lindsey + "\n" + zz + "\n" + david + "\n" + batman + "\n")
+        end
+
+        it "writes sorted by age" do
+            out = capture_stdout do
+                writer.print(:age)
+            end
+            out.string.should eql (batman + "\n" + zz + "\n" + david + "\n" + lindsey + "\n")
+        end
+
+        it "writes sorted by last name" do
+            out = capture_stdout do
+                writer.print(:name)
+            end
+            out.string.should eql (batman + "\n" + david + "\n" + zz + "\n" + lindsey + "\n")
+        end
+
     end
 
     describe "#sort_by_gender" do

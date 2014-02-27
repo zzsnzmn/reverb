@@ -1,42 +1,37 @@
 class Writer
-	attr_accessor :people
+  attr_accessor :db_name
 
-	def initialize people
-		@people = people
-	end
+  def initialize(db='tmp.db')
+    @db = db
+  end
 
-	def print(sort_by=nil)
-
-		case sort_by
-		when :gender
-			@people = self.sort_by_gender
-		when :age
-			@people = self.sort_by_age
-		when :name
-			@people = self.sort_by_last_name
-		end
-
-		@people.each do |person|
-			puts person.to_s
-		end
-	end
-
-	def save(person)
-		File.open("highly_scalable_database.ssv", 'a') {|file| file.write(person.to_db_s)}
-	end
-
-    def sort_by_gender
-        return @people.sort { |a, b| (a.gender.downcase == b.gender.downcase) ? a.last_name <=> b.last_name : a.gender <=> b.gender }
+  def print(people, sort_by = nil)
+    case sort_by
+    when :gender
+      people = sort_by_gender(people)
+    when :age
+      people = sort_by_age(people)
+    when :name
+      people = sort_by_last_name(people)
     end
-
-    def sort_by_age
-        return @people.sort { |a, b|
-            Date.strptime(a.date_of_birth, '%m/%d/%Y') <=> Date.strptime(b.date_of_birth, '%m/%d/%Y') 
-        }
+    people.each do |person|
+      puts person.to_s
     end
+  end
 
-    def sort_by_last_name
-        return @people.sort { |a, b| b.last_name <=> a.last_name }
-    end
+  def save(person)
+    File.open(@db, 'a') { |file| file.write(person.to_db_s) }
+  end
 
+  def sort_by_gender(people)
+    people.sort { |a, b| a.gender.downcase == b.gender.downcase ? a.last_name <=> b.last_name : a.gender <=> b.gender }
+  end
+
+  def sort_by_age(people)
+    people.sort { |a, b| a.date_of_birth <=> b.date_of_birth }
+  end
+
+  def sort_by_last_name(people)
+    people.sort { |a, b| b.last_name <=> a.last_name }
+  end
 end

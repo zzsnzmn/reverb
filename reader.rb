@@ -1,4 +1,3 @@
-require 'CSV'
 require 'date'
 require_relative './person'
 

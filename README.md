@@ -1,6 +1,6 @@
 # Reverb
 
-Built on OS X using ruby 2.0.0. There may be some pathing issues on other operating systems (CSV vs csv?)  
+Built on OS X using ruby 2.0.0. There may be some pathing issues on other operating systems (This can surely be resolved).
 
 CLI App usage:  
 ```
@@ -20,9 +20,12 @@ The rack application is hosted on port 8080, you can fake some data with curl vi
 
 To run the tests:  
 ```
-> rspec spec/[spec_file]
+> rspec
 ```
-For some reason running the tests in isolation will pass, but 3 fail when run with plain rspec.  
+or...  
+```
+> rspec spec/[file]
+```
 
 ===
 

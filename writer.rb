@@ -23,15 +23,4 @@ class Writer
     File.open(@db, 'a') { |file| file.write(person.to_db_s) }
   end
 
-  def sort_by_gender(people)
-    people.sort { |a, b| a.gender.downcase == b.gender.downcase ? a.last_name <=> b.last_name : a.gender <=> b.gender }
-  end
-
-  def sort_by_age(people)
-    people.sort { |a, b| a.date_of_birth <=> b.date_of_birth }
-  end
-
-  def sort_by_last_name(people)
-    people.sort { |a, b| b.last_name <=> a.last_name }
-  end
 end

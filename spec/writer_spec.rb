@@ -55,29 +55,4 @@ describe Writer do
     specify { result.size.should eql 1 }
     specify { result[0].to_s.should eql person.to_s }
   end
-
-  describe '#sort_by_gender' do
-    let(:result) { writer.sort_by_gender(people) }
-    specify { result[0].to_s.should eql lindsey }
-    specify { result[1].to_s.should eql zz }
-    specify { result[2].to_s.should eql david }
-    specify { result[3].to_s.should eql batman }
-  end
-
-  describe '#sort_by_age' do
-    let(:result) { writer.sort_by_age(people) }
-    specify { result[0].to_s.should eql batman }
-    specify { result[1].to_s.should eql zz }
-    specify { result[2].to_s.should eql david }
-    specify { result[3].to_s.should eql lindsey }
-  end
-
-  describe '#sort_by_last_name' do
-    let(:result) { writer.sort_by_last_name(people) }
-    specify { result[0].to_s.should eql batman }
-    specify { result[1].to_s.should eql david }
-    specify { result[2].to_s.should eql zz }
-    specify { result[3].to_s.should eql lindsey }
-  end
-
 end
